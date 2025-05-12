@@ -22,7 +22,7 @@
 	- `AmsiScanBuffer` và `AmsiScanString`: Là các functions chính chịu trách nhiệm cho việc scan các mối nguy từ **in-memory** data buffer và strings
 	- `IAntimalwareProvider`: Là interface được các AV dùng để tích hợp AMSI vào nó, cho phép các bên thứ ba đóng góp vào threat detection cho AMSI framework
 
-![image](https://github.com/user-attachments/assets/395a1359-d72c-499e-b198-79d06def7eae)
+![image](https://learn.microsoft.com/en-us/windows/win32/amsi/images/amsi7archi.jpg)
 
 ### Nguyên lý
 
