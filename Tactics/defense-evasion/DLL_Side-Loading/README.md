@@ -44,6 +44,8 @@ This is a method that leverage DLL search mechanism of Windows when an applicati
 #### Red Team
 - **[Evading EDR by DLL Sideloading in C#](https://globetech.biz/index.php/2023/05/19/evading-edr-by-dll-sideloading-in-csharp/)**
 
+- **[TrustedSec](https://trustedsec.com/blog/loading-dlls-reflections)**: Một POC khá hay về kỹ thuật Reflective DLL Inject
+
 #### Blue Team
 
 ### Known Vulnerable DLLs
