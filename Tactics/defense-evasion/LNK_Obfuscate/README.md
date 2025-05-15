@@ -22,4 +22,18 @@ File LNK gồm 4 cấu trúc chính:
 **3. LinkInfo** - Cung cấp thông tin về Link
 **4. ExtraData** - Chứa các data bổ sung như `STRING_DATA`, `TrackerDataBlock`, v.v.
 
-## 
+## Obfuscator
+
+Rồi giờ thì ta có thể lợi dụng file LNK này như nào,
+
+### Embed file VBS vào shortcut
+
+### Embed Powershell vào shortcut
+
+### Embed PE vào shortcut
+
+## References
+
+- **[Analysis & Simulation of Recent LNK Phishing](https://www.splunk.com/en_us/blog/security/lnk-phishing-analysis-simulation.html):**
+- **[cybereason](https://www.cybereason.com/blog/threat-analysis-taking-shortcuts-using-lnk-files-for-initial-infection-and-persistence):**
+- **[LNK file format abuse](https://blog.quarkslab.com/how-malware-authors-play-with-the-lnk-file-format.html#existing%20tools%20to%20analyze%20lnk%20files):**
