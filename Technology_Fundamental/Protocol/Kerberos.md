@@ -3,6 +3,8 @@
 
 > Mặc dù giao thức này có thể ứng dụng trong nhiều case khác nhau, nhưng note này sẽ tập trung vào môi trường `Active Directory`
 
+![image](https://github.com/user-attachments/assets/d7c20032-1048-4e87-9151-0c83a7506fc9)
+
 ## 1. Kerberos là gì
 
 - Đây là một **Giao thức xác thực** computer-network dựa trên cơ chế tickets
