@@ -66,7 +66,8 @@
 ### Bước 6: Xác nhận dịch vụ (AP_REP) (tuỳ chọn) 
 - Máy chủ dịch vụ gửi phản hồi xác nhận client, hoàn tất xác thực hai chiều. 
 
-![enter image description here](https://www.kerberos.org/images/krbmsg.gif)
+![image](https://github.com/user-attachments/assets/8593f766-86bd-49bf-81fa-60453be056ac)
+
 ---
 
 ## 4. Đặc điểm quan trọng trong AD 
