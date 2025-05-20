@@ -45,25 +45,40 @@
 ---
 
 ## 3. Quy trình xác thực Kerberos trong AD 
+
 ### Bước 1: Client gửi yêu cầu TGT (AS_REQ) 
-- Client (user hoặc máy tính) gửi yêu cầu xác thực đến DC (KDC), cung cấp tên principal (ví dụ: `papcaii@ppt.local`). 
-- Yêu cầu này chưa được mã hóa vì client chưa có khóa phiên. 
+
+- Khi người dùng đăng nhập vào máy Windows, **LSASS** trên client sẽ thu thập thông tin đăng nhập (username, mật khẩu).
+- **LSASS** tạo một yêu cầu xác thực (AS_REQ) gửi đến KDC (thường là Domain Controller) để xin cấp TGT. 
+- Yêu cầu này bao gồm tên người dùng, tên realm (domain), timestamp và các thông tin cần thiết.
+- Yêu cầu này chưa được mã hóa vì client chưa có session key. 
+
 ### Bước 2: DC cấp TGT (AS_REP) - DC xác thực thông tin user/computer. 
-- Tạo **Ticket Granting Ticket (TGT)**, mã hóa bằng khóa bí mật của KDC. 
-- Tạo **session key**, mã hóa bằng khóa được sinh từ mật khẩu user/computer. 
-- Client nhận TGT và session key, dùng để xác thực các bước tiếp theo. 
+
+- Tạo **Ticket Granting Ticket (TGT)**, mã hóa bằng **private key** của KDC. 
+- Tạo **session key**, mã hóa bằng khóa được sinh từ mật khẩu user/computer.
+- LSASS trên client nhận TGT và session key, lưu trữ trong bộ nhớ để dùng cho các bước xác thực tiếp theo.
+- Khi client muốn truy cập dịch vụ khác, LSASS sử dụng TGT để gửi yêu cầu lấy Service Ticket (TGS) từ KDC mà không cần nhập lại mật khẩu.
+
 ### Bước 3: Client yêu cầu Service Ticket (TGS_REQ) 
+
 - Khi muốn truy cập dịch vụ, ví dụ SMB của server windows-02 (TGT ticket sẽ là `cifs/windows10-02.ppt.local`), client gửi TGT và **Authenticator** đến TGS trên DC. 
 - Authenticator chứa thông tin chứng minh quyền sở hữu TGT, được mã hóa bằng session key. 
+
 ### Bước 4: DC cấp Service Ticket (TGS_REP) 
+
 - TGS kiểm tra TGT và Authenticator, nếu hợp lệ cấp **Service Ticket** cho dịch vụ. 
 - Service Ticket được mã hóa bằng khóa bí mật của dịch vụ (được lưu trong AD). 
 - Client nhận Service Ticket và session key dịch vụ. 
+
 ### Bước 5: Client truy cập dịch vụ (AP_REQ) 
+
 - Client gửi Service Ticket và Authenticator đến máy chủ dịch vụ. 
 - Máy chủ dịch vụ giải mã Service Ticket, xác thực client dựa trên vé. 
 - Nếu hợp lệ, cho phép truy cập. 
+
 ### Bước 6: Xác nhận dịch vụ (AP_REP) (tuỳ chọn) 
+
 - Máy chủ dịch vụ gửi phản hồi xác nhận client, hoàn tất xác thực hai chiều. 
 
 ![image](https://github.com/user-attachments/assets/8593f766-86bd-49bf-81fa-60453be056ac)
