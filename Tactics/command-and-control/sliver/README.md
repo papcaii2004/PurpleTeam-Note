@@ -32,25 +32,25 @@ sliver > generate beacon --mtls <ip address>:<port> --os #{os} -f #{file_format}
 
 #### MTLS
 
-```
+```bash
 sliver > mtls
 ```
 
 #### HTTP
 
-```
+```bash
 sliver > http
 ```
 
 #### HTTPS
 
-```
+```bash
 sliver > https
 ```
 
 #### DNS
 
-```
+```bash
 sliver > dns
 ```
 
@@ -58,14 +58,14 @@ sliver > dns
 
 #### Tương tác beacon
 
-```
+```bash
 sliver > beacons
 sliver > use <beacon_id>
 ```
 
 ### Tạo session từ beacon
 
-```
+```bash
 sliver (<beacon_name>) > interactive
 sliver (<beacon_name>) > sessions
 sliver (<beacon_name>) > use <session_id>
@@ -73,6 +73,6 @@ sliver (<beacon_name>) > use <session_id>
 
 ### Tạo shell từ session
 
-```
+```bash
 sliver (<session_name>) > shell
 ```
