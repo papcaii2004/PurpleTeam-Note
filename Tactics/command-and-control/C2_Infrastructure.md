@@ -14,6 +14,8 @@
 
 **Design overview:** Các Lưu lượng mạng đến một tên miền chim mồi (giả sử `vulnlab.com`) được control với **Cloudflare** sẽ được forward đến **Proxy VPS**, sau đó mới đến **C2 VPS**
 
+![image](https://github.com/user-attachments/assets/6666e0b3-4735-493c-a67a-34a1f8cce2d0)
+
 ## Setup
 
 Hiểu kiến trúc rồi bắt tay vào setup thôi
