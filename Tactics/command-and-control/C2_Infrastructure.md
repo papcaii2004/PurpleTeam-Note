@@ -12,7 +12,7 @@
 
 - **Sliver C2 VPS:** C2 server của chúng ta, chịu trách nhiệm handle các request sau khi đã đi qua proxy
 
-**Design overview:** Các Lưu lượng mạng đến một tên miền chim mồi (giả sử "helloworld.com") được control với **Cloudflare** sẽ được forward đến **Proxy VPS**, sau đó mới đến **C2 VPS**
+**Design overview:** Các Lưu lượng mạng đến một tên miền chim mồi (giả sử `vulnlab.com`) được control với **Cloudflare** sẽ được forward đến **Proxy VPS**, sau đó mới đến **C2 VPS**
 
 ## Setup
 
@@ -27,7 +27,16 @@ Hiểu kiến trúc rồi bắt tay vào setup thôi
 
 ### II/ Setup Proxy VPS
 
-#### 1. Cài đặt Docker và Docker Compose
+#### 1. Tạo SSL Certificate (for HTTPs)
+
+```sh
+sudo apt install certbot python3-certbot-nginx
+certbot certonly --standalone -d vulnlab.com -m test@vulnlab.com --agree-tos --staple-ocsp
+```
+
+- Sau đó có file filechain.pem (Certificate) và privkey.pem (Certificate key) được tạo, 2 file này sẽ được thêm vào Nginx thông qua GUI (ở bước tiếp sau)
+
+#### 2. Cài đặt Docker và Docker Compose
 
 ```sh
 sudo apt update
@@ -38,7 +47,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/v2.29.2/docker
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-#### 2. Tạo Container cho Nginx
+#### 3. Tạo Container cho Nginx
 
 - Tạo file docker-compose.yml
 
@@ -64,12 +73,13 @@ services:
 docker-compose up -d
 ```
 
-#### 3. Đăng nhập vào Nginx GUI và thêm rule proxy
+#### 4. Đăng nhập vào Nginx GUI và thêm rule proxy
 
 - Đăng nhập vào `https://{PROXY_VPS_IP}:81` với cred
 	- username: admin@example.com
 	- password: changeme
 
+- Thêm Certificate ta có được ở trên
 - Thêm rule proxy, điều hướng mọi connections sử dụng domain của ta (config ở trên bằng Cloudflare) đến **C2 VPS**
 
 ### III/ Setup C2 VPS
