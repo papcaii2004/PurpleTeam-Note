@@ -40,3 +40,4 @@ There are three types of CTI:
 ## References
 
 - https://www.splunk.com/en_us/blog/learn/what-is-cyber-threat-intelligence.html#:~:text=Based%20on%20the%20depth%20of,%2C%20tactical%2C%20and%20operation%20CTI.
+- [DefenderYARA](https://github.com/mthcht/awesome-lists/tree/13e54767832f48f668d54d45489125f99c4744e4/Lists/Others/Defender_yara_rules): Up-to-date YARA from Windows Defender
